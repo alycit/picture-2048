@@ -9,7 +9,7 @@
 
 ## Summary
 
-Let's build a clone of the game [2048](http://gabrielecirulli.github.io/2048/).
+Let's build a clone of the game [2048](http://gabrielecirulli.github.io/2048/), [Star Wars 2048](http://0x0800.github.io/2048-STARWARS/) or [Doge 2048](http://doge2048.com/)
 
 We will implement the core game play. Play the game for a few minutes so U understand the rules of the game. How do blocks spawn? When does the game disallow a movement? How do blocks merge? How do blocks slide? Try to write a specification of how the game mechanics work.
 
