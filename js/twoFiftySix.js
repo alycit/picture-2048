@@ -23,7 +23,6 @@ TwoFiftySix.prototype.loadGame = function() {
 TwoFiftySix.prototype.saveGame  = function() {
   localStorage.setItem('TwoFiftySixGameBoard', this.game.toString());
   localStorage.setItem('TwoFiftySixGameScore', this.game.score);
-  console.log(localStorage);
 }
 
 TwoFiftySix.prototype.bindKeyEvents = function() {
