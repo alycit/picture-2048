@@ -4,7 +4,7 @@ function Game() {
   this.board = [];
   this.score = 0;
 
-  arguments.length > 0 ? parseBoard(arguments[0].split("")) : createBoard();
+  arguments.length > 0 ? parseBoard(arguments[0].split(",")) : createBoard();
   if(arguments[1]) { this.score = arguments[1] }
 
   function parseBoard(board){
@@ -26,13 +26,13 @@ function Game() {
 Game.prototype.toString = function(){
   var result = [];
   for(var i = 0; i < this.board.length; i++) {
-    result.push(this.board[i].join(""));
+    result.push(this.board[i].join(","));
   }
-  return result.join("");
+  return result.join(",");
 }
 
 Game.prototype.move = function(direction) {
-
+  var boardBeforeMove = this.toString();
   if(direction === "left") {
     this.moveLeft();
   } else if(direction === "right") {
@@ -42,7 +42,10 @@ Game.prototype.move = function(direction) {
   } else if(direction === 'down') {
     this.moveVertically(this.moveRight.bind(this));
   }
-  this.addNewNumber();
+
+  if(this.toString() != boardBeforeMove) {
+    this.addNewNumber();
+  }
   return this;
 }
 

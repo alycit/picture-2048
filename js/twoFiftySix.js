@@ -1,7 +1,8 @@
 function TwoFiftySix(){}
 
 TwoFiftySix.prototype.initialize = function(direction) {
-  this.bindEvents();
+  GameView.reset().on("click", this.reset.bind(this));
+  this.bindKeyEvents();
   this.loadGame();
   GameView.render(this.game);
 }
@@ -21,14 +22,14 @@ TwoFiftySix.prototype.loadGame = function() {
 TwoFiftySix.prototype.saveGame  = function() {
   localStorage.setItem('TwoFiftySixGameBoard', this.game.toString());
   localStorage.setItem('TwoFiftySixGameScore', this.game.score);
+  console.log(localStorage);
 }
 
-TwoFiftySix.prototype.bindEvents = function() {
+TwoFiftySix.prototype.bindKeyEvents = function() {
   var that = this;
   _.each(["up", "down", "left", "right"], function(keyDirection){
     Mousetrap.bind(keyDirection, that.move.bind(that));
   });
-  GameView.reset().on("click", this.reset.bind(this));
 }
 
 TwoFiftySix.prototype.move = function(event) {

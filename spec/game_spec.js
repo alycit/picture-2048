@@ -28,7 +28,7 @@ describe("Game", function() {
 
   describe("fixed board", function(){
     beforeEach(function() {
-      game = new Game('0002000000000200');
+      game = new Game('0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0');
     });
 
     it("should have a board that represents the input string", function(){
@@ -43,11 +43,11 @@ describe("Game", function() {
   describe("#toString", function(){
 
     beforeEach(function() {
-      game = new Game('0002000000000200');
+      game = new Game('0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0');
     });
 
     it("should return a string representing the board", function(){
-      expect(game.toString()).toEqual('0002\n0000\n0000\n0200');
+      expect(game.toString()).toEqual('0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0');
     });
   });
 
@@ -72,7 +72,7 @@ describe("Game", function() {
 
   describe("#addNewNumber", function(){
     it("replaces a zero with a new 2 or 4", function(){
-      var game = new Game('2200440022004400');
+      var game = new Game('2,2,0,0,4,4,0,0,2,2,0,0,4,4,0,0');
       game.addNewNumber();
       var zeros = _.reject(_.flatten(game.board), function(num){ return (num == 2 || num == 4) });
       var nonZeros = _.reject(_.flatten(game.board), function(num){ return num == 0});
@@ -86,21 +86,21 @@ describe("Game", function() {
     describe("moving left", function(){
 
       beforeEach(function() {
-        game = new Game('0002000200020002');
+        game = new Game('0,0,0,2,0,0,0,2,0,0,0,2,0,0,0,2');
       });
 
       it("moves numbers with no duplicates to the far left", function(){
-        expect(game.moveLeft().toString()).toEqual('2000\n2000\n2000\n2000');
+        expect(game.moveLeft().toString()).toEqual('2,0,0,0,2,0,0,0,2,0,0,0,2,0,0,0');
       });
 
       describe("combining numbers", function(){
 
         beforeEach(function() {
-          game = new Game('2200440022004400');
+          game = new Game('2,2,0,0,4,4,0,0,2,2,0,0,4,4,0,0');
         });
 
         it("combines numbers with duplicates to the far left", function(){
-          expect(game.moveLeft().toString()).toEqual('4000\n8000\n4000\n8000');
+          expect(game.moveLeft().toString()).toEqual('4,0,0,0,8,0,0,0,4,0,0,0,8,0,0,0');
         });
       });
     });
@@ -108,21 +108,21 @@ describe("Game", function() {
     describe("moving right", function(){
 
       beforeEach(function() {
-        game = new Game('2000200020002000');
+        game = new Game('2,0,0,0,2,0,0,0,2,0,0,0,2,0,0,0');
       });
 
       it("moves numbers with no duplicates to the far right", function(){
-        expect(game.moveRight().toString()).toEqual('0002\n0002\n0002\n0002');
+        expect(game.moveRight().toString()).toEqual('0,0,0,2,0,0,0,2,0,0,0,2,0,0,0,2');
       });
 
       describe("combining numbers", function(){
 
         beforeEach(function() {
-          game = new Game('2200440022004400');
+          game = new Game('2,2,0,0,4,4,0,0,2,2,0,0,4,4,0,0');
         });
 
         it("combines numbers with duplicates to the far right", function(){
-          expect(game.moveRight().toString()).toEqual('0004\n0008\n0004\n0008');
+          expect(game.moveRight().toString()).toEqual('0,0,0,4,0,0,0,8,0,0,0,4,0,0,0,8');
         });
       });
 
@@ -130,42 +130,42 @@ describe("Game", function() {
 
     describe("moving up", function(){
       beforeEach(function() {
-        game = new Game('0000000000002222');
+        game = new Game('0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2');
       });
 
       it("moves numbers with no duplicates to the far top", function(){
-        expect(game.moveVertically(game.moveLeft.bind(game)).toString()).toEqual('2222\n0000\n0000\n0000');
+        expect(game.moveVertically(game.moveLeft.bind(game)).toString()).toEqual('2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0');
       });
 
       describe("combining numbers", function(){
 
         beforeEach(function() {
-          game = new Game('0000000024242424');
+          game = new Game('0,0,0,0,0,0,0,0,2,4,2,4,2,4,2,4');
         });
 
         it("combines numbers with duplicates to the far top", function(){
-          expect(game.moveVertically(game.moveLeft.bind(game)).toString()).toEqual('4848\n0000\n0000\n0000');
+          expect(game.moveVertically(game.moveLeft.bind(game)).toString()).toEqual('4,8,4,8,0,0,0,0,0,0,0,0,0,0,0,0');
         });
       });
     });
 
     describe("moving down", function(){
       beforeEach(function() {
-        game = new Game('2222000000000000');
+        game = new Game('2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0');
       });
 
       it("moves numbers with no duplicates to the far bottom", function(){
-        expect(game.moveVertically(game.moveRight.bind(game)).toString()).toEqual('0000\n0000\n0000\n2222');
+        expect(game.moveVertically(game.moveRight.bind(game)).toString()).toEqual('0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2');
       });
 
       describe("combining numbers", function(){
 
         beforeEach(function() {
-          game = new Game('2424242400000000');
+          game = new Game('2,4,2,4,2,4,2,4,0,0,0,0,0,0,0,0');
         });
 
         it("combines numbers with duplicates to the far bottom", function(){
-          expect(game.moveVertically(game.moveRight.bind(game)).toString()).toEqual('0000\n0000\n0000\n4848');
+          expect(game.moveVertically(game.moveRight.bind(game)).toString()).toEqual('0,0,0,0,0,0,0,0,0,0,0,0,4,8,4,8');
         });
       });
     });
