@@ -21,19 +21,17 @@ var GameView = {
     $("#score").html(game.score);
   },
   imageMap: {
-    2: { src: "amber.jpeg", name: "Amber" },
-    4: { src: "ben.jpeg", name: "Ben" },
-    8: { src: "emmanuel.jpeg", name: "Emmanuel" },
-    16: { src: "henry.jpeg", name: "Henry" },
-    32: { src: "jack.jpeg", name: "Jack" },
-    64: { src: "jason.jpeg", name: "Jason" },
-    128: { src: "joe.jpeg", name: "Joe" },
-    256: { src: "lola.jpeg", name: "Lola" },
-    512: { src: "matt.jpeg", name: "Matt" },
-    1024: { src: "michael.jpeg", name: "Michael" },
-    2048: { src: "nick.jpeg", name: "Nick" },
-    4096: { src: "pete.jpeg", name: "Pete" },
-    8192: { src: "bo.jpeg", name: "Bo" }
+    2: { src: "mike.jpeg", name: "Mike" },
+    4: { src: "casey.jpeg", name: "Casey" },
+    8: { src: "matt.jpeg", name: "Matt" },
+    16: { src: "duke.jpeg", name: "Duke" },
+    32: { src: "alyssa.jpeg", name: "Alyssa" },
+    64: { src: "maurice.jpeg", name: "Maurice" },
+    128: { src: "courtney.jpeg", name: "Courtney" },
+    256: { src: "lia.jpeg", name: "Lia" },
+    512: { src: "torey.jpeg", name: "Torey" },
+    1024: { src: "lucas.jpeg", name: "Lucas" },
+    2048: { src: "leon.jpeg", name: "Leon" }
   },
   convertToImage: function(cell) {
     return "<img src='images/" + this.imageMap[cell].src + "'>";
