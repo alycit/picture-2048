@@ -5,6 +5,7 @@ TwoFiftySix.prototype.initialize = function(direction) {
   this.bindKeyEvents();
   this.loadGame();
   GameView.render(this.game);
+  GameView.renderLegend();
 }
 
 TwoFiftySix.prototype.loadGame = function() {
@@ -33,8 +34,10 @@ TwoFiftySix.prototype.bindKeyEvents = function() {
 }
 
 TwoFiftySix.prototype.move = function(event) {
+  event.preventDefault();
   GameView.render(this.game.move(event.keyIdentifier.toLowerCase()));
   this.saveGame();
+
 }
 
 TwoFiftySix.prototype.reset = function(event) {
