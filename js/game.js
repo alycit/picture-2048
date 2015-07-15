@@ -2,8 +2,10 @@ function Game() {
 
   var that = this;
   this.board = [];
+  this.score = 0;
 
   arguments.length > 0 ? parseBoard(arguments[0].split("")) : createBoard();
+  if(arguments[1]) { this.score = arguments[1] }
 
   function parseBoard(board){
     boardArray = _.map(board, function(number) {
@@ -26,7 +28,7 @@ Game.prototype.toString = function(){
   for(var i = 0; i < this.board.length; i++) {
     result.push(this.board[i].join(""));
   }
-  return result.join("\n");
+  return result.join("");
 }
 
 Game.prototype.move = function(direction) {
@@ -40,9 +42,7 @@ Game.prototype.move = function(direction) {
   } else if(direction === 'down') {
     this.moveVertically(this.moveRight.bind(this));
   }
-
   this.addNewNumber();
-
   return this;
 }
 
@@ -57,12 +57,15 @@ Game.prototype.addNewNumber = function() {
       this.board[row][col] = _.sample([2, 2, 2, 4]);
       notReplaced = false;
     }
-
   } while(notReplaced)
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
+}
+
+Game.prototype.updateScore = function(score) {
+  this.score += score;
 }
 
 Game.prototype.combineNumbers = function(numbers, direction) {
@@ -74,7 +77,9 @@ Game.prototype.combineNumbers = function(numbers, direction) {
 
   while(numbers.length > 0) {
     if(numbers[1] && (numbers[0] === numbers[1])) {
-      result.push(numbers[0] + numbers[1]);
+      var newNumber = numbers[0] + numbers[1];
+      this.updateScore(newNumber);
+      result.push(newNumber);
       numbers.shift();
       numbers.shift();
 
