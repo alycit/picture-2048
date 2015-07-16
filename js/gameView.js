@@ -1,4 +1,5 @@
 var GameView = {
+  board: function() { return document.getElementById("container"); },
   reset: function(){ return $("#reset") },
   render: function(game){
     var that = this;

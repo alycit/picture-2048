@@ -3,6 +3,7 @@ function TwoFiftySix(){}
 TwoFiftySix.prototype.initialize = function(direction) {
   GameView.reset().on("click", this.reset.bind(this));
   this.bindKeyEvents();
+  this.bindSwipeEvents();
   this.loadGame();
   GameView.render(this.game);
   GameView.renderLegend();
@@ -32,11 +33,30 @@ TwoFiftySix.prototype.bindKeyEvents = function() {
   });
 }
 
+TwoFiftySix.prototype.bindSwipeEvents = function() {
+  var that = this;
+  var board = GameView.board();
+  var hammer = new Hammer.Manager(board);
+  var swipe = new Hammer.Swipe();
+  hammer.add(swipe);
+
+  _.each(["swipeup", "swipedown", "swipeleft", "swiperight"], function(swipeDirection){
+    hammer.on(swipeDirection, that.move.bind(that));
+  });
+}
+
 TwoFiftySix.prototype.move = function(event) {
   event.preventDefault();
-  GameView.render(this.game.move(event.keyIdentifier.toLowerCase()));
-  this.saveGame();
+  var direction = "";
 
+  if(event.type.indexOf("swipe") != -1) {
+    direction = event.type.substring(5);
+  } else {
+    direction = event.keyIdentifier.toLowerCase();
+  }
+
+  GameView.render(this.game.move(direction));
+  this.saveGame();
 }
 
 TwoFiftySix.prototype.reset = function(event) {
