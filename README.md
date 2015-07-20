@@ -1,75 +1,45 @@
-# 256! A 2048 Clone.
-
-## Learning Competencies
-
-* Build a JavaScript interface independent of a backend.
-* Build a complex JS model independent of the interface.
-* Integrate the JS model with the HTML interface.
-* Use the Mousetrap.js library to bind keyboard events.
+# Picture 2048 - A 2048 Clone
 
 ## Summary
 
-Let's build a clone of the game [2048](http://gabrielecirulli.github.io/2048/), [Star Wars 2048](http://0x0800.github.io/2048-STARWARS/) or [Doge 2048](http://doge2048.com/)
+A clone of the game [2048](http://gabrielecirulli.github.io/2048/) using pure javascript.  
 
-We will implement the core game play. Play the game for a few minutes so U understand the rules of the game. How do blocks spawn? When does the game disallow a movement? How do blocks merge? How do blocks slide? Try to write a specification of how the game mechanics work.
+Currently Deployed at: http://chidbc2048.herokuapp.com
 
-## Releases
+Features:
 
-### Release 0: Create a barebones model object with an appropriate data structure
+- Core gameplay using directional arrows
+- Scoring
+- Ability to start a new game
+- Using local storage to save the current game state
+- Mobile friendly via swipe events
 
-In `game.js` create a Game model to store the state of our game. Use JavaScript's optional parameters so that we can call the constructor function in two ways:
+**Not yet implemented:**
 
-`game = new Game() // generates a random starting board`
+- Game over indicator
+- Game won indicator
 
-`game = new Game('0000202000000000') // generates a board with the given start`
+**Personalization:**
 
-The latter will come in handy for testing, which U will certainly want to do for this project given the tricky game rules.
+- Swap out the images in the `images` directory.
+- Modify the imageMap object in `GameView.js` for your needs. (Legend is also generated based on this data).
 
-Add a `toString()` method to your Game model.
+  ```js
+  imageMap: {
+    2: { src: "mike.jpeg", name: "Mike" },
+    4: { src: "casey.jpeg", name: "Casey" },
+    8: { src: "matt.jpeg", name: "Matt" },
+    16: { src: "duke.jpeg", name: "Duke" },
+    32: { src: "alyssa.jpeg", name: "Alyssa" },
+    64: { src: "maurice.jpeg", name: "Maurice" },
+    128: { src: "courtney.jpeg", name: "Courtney" },
+    256: { src: "lia.jpeg", name: "Lia" },
+    512: { src: "torey.jpeg", name: "Torey" },
+    1024: { src: "lucas.jpeg", name: "Lucas" },
+    2048: { src: "leon.jpeg", name: "Leon" }
+  },
+  ```
 
-```
-> game.toString()
-"0000
-2020
-0000
-0000"
-```
+**Testing:**
 
-### Release 1: Build the game logic
-
-The Game model will expose a very simple public interface to the controller.
-
-```
-> game.toString()
-"0000
-2020
-0000
-0000"
-> game.move('left')
-> game.toString()
-"0000
-0004
-2000
-0000"
-> game.move('up')
-"2004
-0000
-0000
-0020"
-```
-
-Implement the `move` method for all four directions. Think about useful helper methods U might need, such as `spawnBlock`.
-
-U might want to setup Jasmine and write specs for model. Or U might want to make a simple `game_test.js` file that includes simple assertions. This game has a variety of interesting edge cases to consider, so make sure U have the logic working correctly.
-
-### Release 2: Integrate the model with the interface via a controller
-
-In your application.js file code to instantiate a new instance of the Game model. Using Mousetrap make it so that your keypresses will send `move` commands to the Game. 
-
-In your Game model and controller write methods to update the DOM to display your board. 
-
-### Release 3: Bonuses!
-
-* Implement a score display.
-* Implement starting a new game.
-* Implement storing the game in LocalStorage so that it still shows up if U close the tab.
+Game logic has been tested using jasmine.
