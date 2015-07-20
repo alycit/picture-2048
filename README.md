@@ -6,19 +6,20 @@ A clone of the game [2048](http://gabrielecirulli.github.io/2048/) using pure ja
 
 Currently Deployed at: http://chidbc2048.herokuapp.com
 
-It implements core game play with the following features:
+Features:
 
+- Core gameplay using directional arrows
 - Scoring
 - Ability to start a new game
 - Using local storage to save the current game state
 - Mobile friendly via swipe events
 
-Not implemented:
+**Not yet implemented:**
 
 - Game over indicator
 - Game won indicator
 
-Personalization:
+**Personalization:**
 
 - Swap out the images in the `images` directory.
 - Modify the imageMap object in `GameView.js` for your needs. (Legend is also generated based on this data).
@@ -39,6 +40,6 @@ Personalization:
   },
   ```
 
-## Testing
+**Testing:**
 
 Game logic has been tested using jasmine.
