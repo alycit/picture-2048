@@ -10,12 +10,14 @@
   <script src="lib/jasmine-2.3.4/jasmine.js"></script>
   <script src="lib/jasmine-2.3.4/jasmine-html.js"></script>
   <script src="lib/jasmine-2.3.4/boot.js"></script>
+  <script src="spec/blanket.min.js" data-cover-adapter="spec/jasmine-blanket.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="js/underscore.js"></script>
   <script src="js/utilities.js"></script>
 
+
   <!-- include source files here... -->
-  <script src="js/game.js"></script>
+  <script src="js/game.js" data-cover></script>
   <!-- include spec files here... -->
   <script src="spec/game_spec.js"></script>
 
