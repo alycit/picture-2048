@@ -38,6 +38,7 @@ Personalization:
     2048: { src: "leon.jpeg", name: "Leon" }
   },
   ```
+
 ## Testing
 
 Game logic has been tested using jasmine.
