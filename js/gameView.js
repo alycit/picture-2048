@@ -13,7 +13,7 @@ var GameView = {
       var $row = $("<tr></tr>");
       $table.append($row);
 
-      _.each(row, function(cell){
+      _.each(row, function(cell) {
         var $cell = cell > 0 ? $("<td>" + that.convertToImage(cell) + "</td>") : $("<td></td>");
         $row.append($cell);
       });
